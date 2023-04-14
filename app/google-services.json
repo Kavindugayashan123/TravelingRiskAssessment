@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "322463925261",
+    "firebase_url": "https://riskassessmentmobileapp-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "riskassessmentmobileapp",
+    "storage_bucket": "riskassessmentmobileapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:322463925261:android:b8bb0e639760f7c5574144",
+        "android_client_info": {
+          "package_name": "lk.kavi.travelapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "322463925261-uprcdfet3bjs8j8984br7uji1kgv3a59.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCDHpygupASVufwmY_MGoDlNMEH5u3wlYQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "322463925261-uprcdfet3bjs8j8984br7uji1kgv3a59.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
