@@ -14,12 +14,16 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.gson.Gson;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Random;
 
 public class PoliceActivity extends AppCompatActivity {
 
@@ -42,25 +46,43 @@ public class PoliceActivity extends AppCompatActivity {
         btnHelp = findViewById(R.id.btnHelp);
         helpText = findViewById(R.id.helpText);
 
+        Police data = null;
+
         Intent intent = getIntent();
-        String datas = (String) intent.getExtras().getSerializable("data");
+        try{
+            String datas = (String) intent.getExtras().getSerializable("data");
 
-        Police data = new Gson().fromJson(datas, Police.class);
+            data = new Gson().fromJson(datas, Police.class);
 
-        policeName.setText(data.getName());
-        mobileNo.setText(data.getMobile_no());
-        imageView.setImageBitmap(data.getImgBitmap());
+            getSupportActionBar().setTitle(data.getName());
+            policeName.setText(data.getName());
+            mobileNo.setText(data.getMobile_no());
+            imageView.setImageBitmap(data.getImgBitmap());
+        }catch (NullPointerException e){
 
+        }
+
+
+        Police finalData = data;
         btnHelp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                DatabaseReference dbRef = ApiClient.getDBRef();
                 String uid = mAuth.getCurrentUser().getUid();
-
                 String s = helpText.getText().toString();
 
+                DatabaseReference usersRef = ApiClient.getDBRef().child("help");
+                Map<String, Object> help = new HashMap<>();
 
+                help.put("policeName", finalData.getName());
+                help.put("helpTxt",s);
+                help.put("userId",uid);
+                usersRef.child(String.valueOf(new Random().nextLong()*5000)).setValue(help).addOnCompleteListener(task1 -> {
+                    Toast.makeText(PoliceActivity.this,
+                            "Success",
+                            Toast.LENGTH_LONG).show();
+                    startActivity(new Intent(PoliceActivity.this, PoliceListActivity.class));
+                });
 
             }
         });

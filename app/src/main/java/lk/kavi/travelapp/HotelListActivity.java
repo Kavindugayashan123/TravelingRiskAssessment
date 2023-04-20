@@ -9,6 +9,7 @@ import lk.kavi.travelapp.model.Hotel;
 import lk.kavi.travelapp.utils.ApiClient;
 
 import android.Manifest;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -59,6 +60,8 @@ public class HotelListActivity extends AppCompatActivity  implements LocationLis
         setContentView(R.layout.activity_hotel_list);
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
+
+        showLoadingDialog();
         getNearHotelList();
         locationPerm();
 
@@ -172,6 +175,7 @@ public class HotelListActivity extends AppCompatActivity  implements LocationLis
                 simpleList = (ListView) findViewById(R.id.simpleListView);
                 HotelListAdapter customAdapter = new HotelListAdapter(HotelListActivity.this, myList);
                 simpleList.setAdapter(customAdapter);
+                dismissLoadingDialog();
             }
 
             @Override
@@ -222,5 +226,27 @@ public class HotelListActivity extends AppCompatActivity  implements LocationLis
         System.out.println(longitude);
 
 
+    }
+
+
+    private ProgressDialog progress;
+
+
+
+    public void showLoadingDialog() {
+
+        if (progress == null) {
+            progress = new ProgressDialog(this);
+            progress.setTitle("Loading");
+            progress.setMessage("Please Wait...");
+        }
+        progress.show();
+    }
+
+    public void dismissLoadingDialog() {
+
+        if (progress != null && progress.isShowing()) {
+            progress.dismiss();
+        }
     }
 }

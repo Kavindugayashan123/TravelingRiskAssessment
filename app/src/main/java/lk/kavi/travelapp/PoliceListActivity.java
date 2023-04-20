@@ -10,6 +10,7 @@ import lk.kavi.travelapp.model.Police;
 import lk.kavi.travelapp.utils.ApiClient;
 
 import android.Manifest;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -51,12 +52,35 @@ public class PoliceListActivity extends AppCompatActivity  implements LocationLi
     ListView simpleList;
     List<Police> policeList;
 
+
+    private ProgressDialog progress;
+
+
+
+    public void showLoadingDialog() {
+
+        if (progress == null) {
+            progress = new ProgressDialog(this);
+            progress.setTitle("Loading");
+            progress.setMessage("Please Wait...");
+        }
+        progress.show();
+    }
+
+    public void dismissLoadingDialog() {
+
+        if (progress != null && progress.isShowing()) {
+            progress.dismiss();
+        }
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_police_list);
 
 
+        showLoadingDialog();
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
         getNearPoliceList();
@@ -170,6 +194,7 @@ public class PoliceListActivity extends AppCompatActivity  implements LocationLi
                 simpleList = (ListView) findViewById(R.id.simpleListView);
                 PoliceListAdapter customAdapter = new PoliceListAdapter(PoliceListActivity.this, myList);
                 simpleList.setAdapter(customAdapter);
+                dismissLoadingDialog();
             }
 
             @Override

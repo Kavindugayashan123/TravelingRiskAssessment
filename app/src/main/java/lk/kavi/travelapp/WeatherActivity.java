@@ -160,7 +160,7 @@ public class WeatherActivity extends AppCompatActivity {
         }
 
         RecyclerView rvContacts = findViewById(R.id.recycler_view);
-        FiveDayAdapter adapter = new FiveDayAdapter(fiveDayWeathers);
+        FiveDayAdapter adapter = new FiveDayAdapter(WeatherActivity.this,fiveDayWeathers);
         rvContacts.setAdapter(adapter);
         LinearLayoutManager layoutManager
                 = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);

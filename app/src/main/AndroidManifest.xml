@@ -6,7 +6,8 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.CAMERA"/>
-
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -14,14 +15,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ProfileActivity"></activity>
-        <activity android:name=".HotelListActivity" />
-        <activity android:name=".PoliceActivity" />
-        <activity android:name=".PoliceListActivity" />
-        <activity android:name=".UploadActivity" />
-        <activity android:name=".WeatherActivity" />
+        <activity android:name=".ProfileActivity" />
+        <activity android:name=".FriendsActivity" android:label="Travel With Friends" android:parentActivityName=".MainActivity" />
+        <activity android:name=".HotelListActivity" android:label="Lodges" android:parentActivityName=".MainActivity"  />
+        <activity android:name=".PoliceActivity"  android:parentActivityName=".PoliceListActivity" />
+        <activity android:name=".PoliceListActivity" android:label="Contact Police" android:parentActivityName=".MainActivity" />
+        <activity android:name=".UploadActivity" android:label="Risk Assessment" android:parentActivityName=".MainActivity" />
+        <activity android:name=".WeatherActivity" android:label="Weather" android:parentActivityName=".MainActivity" />
         <activity
             android:name=".RegisterActivity"
+            android:label="Register"
             android:parentActivityName=".LoginActivity" />
         <activity android:name=".HotelActivity"  android:parentActivityName=".HotelListActivity" />
         <activity android:name=".MainActivity" />

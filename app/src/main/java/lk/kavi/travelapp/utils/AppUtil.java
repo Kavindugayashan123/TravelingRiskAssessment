@@ -33,18 +33,13 @@ import java.util.Calendar;
 import java.util.Locale;
 import java.util.TimeZone;
 
-import androidx.annotation.CheckResult;
-import androidx.annotation.ColorInt;
-import androidx.annotation.FloatRange;
-import androidx.annotation.IntRange;
-import androidx.annotation.NonNull;
-import androidx.annotation.RequiresPermission;
-import androidx.appcompat.widget.AppCompatEditText;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.core.os.ConfigurationCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import io.reactivex.annotations.NonNull;
+import lk.kavi.travelapp.R;
 import lk.kavi.travelapp.listener.OnSetApiKeyEventListener;
 
 import static android.Manifest.permission.ACCESS_NETWORK_STATE;
@@ -107,25 +102,25 @@ public class AppUtil {
    * @param weatherCode code of weather status
    */
   public static void setWeatherIcon(Context context, AppCompatImageView imageView, int weatherCode) {
-//    if (weatherCode / 100 == 2) {
-//      Glide.with(context).load(R.drawable.ic_storm_weather).into(imageView);
-//    } else if (weatherCode / 100 == 3) {
-//      Glide.with(context).load(R.drawable.ic_rainy_weather).into(imageView);
-//    } else if (weatherCode / 100 == 5) {
-//      Glide.with(context).load(R.drawable.ic_rainy_weather).into(imageView);
-//    } else if (weatherCode / 100 == 6) {
-//      Glide.with(context).load(R.drawable.ic_snow_weather).into(imageView);
-//    } else if (weatherCode / 100 == 7) {
-//      Glide.with(context).load(R.drawable.ic_unknown).into(imageView);
-//    } else if (weatherCode == 800) {
-//      Glide.with(context).load(R.drawable.ic_clear_day).into(imageView);
-//    } else if (weatherCode == 801) {
-//      Glide.with(context).load(R.drawable.ic_few_clouds).into(imageView);
-//    } else if (weatherCode == 803) {
-//      Glide.with(context).load(R.drawable.ic_broken_clouds).into(imageView);
-//    } else if (weatherCode / 100 == 8) {
-//      Glide.with(context).load(R.drawable.ic_cloudy_weather).into(imageView);
-//    }
+    if (weatherCode / 100 == 2) {
+      Glide.with(context).load(R.drawable.ic_storm_weather).into(imageView);
+    } else if (weatherCode / 100 == 3) {
+      Glide.with(context).load(R.drawable.ic_rainy_weather).into(imageView);
+    } else if (weatherCode / 100 == 5) {
+      Glide.with(context).load(R.drawable.ic_rainy_weather).into(imageView);
+    } else if (weatherCode / 100 == 6) {
+      Glide.with(context).load(R.drawable.ic_snow_weather).into(imageView);
+    } else if (weatherCode / 100 == 7) {
+      Glide.with(context).load(R.drawable.ic_unknown).into(imageView);
+    } else if (weatherCode == 800) {
+      Glide.with(context).load(R.drawable.ic_clear_day).into(imageView);
+    } else if (weatherCode == 801) {
+      Glide.with(context).load(R.drawable.ic_few_clouds).into(imageView);
+    } else if (weatherCode == 803) {
+      Glide.with(context).load(R.drawable.ic_broken_clouds).into(imageView);
+    } else if (weatherCode / 100 == 8) {
+      Glide.with(context).load(R.drawable.ic_cloudy_weather).into(imageView);
+    }
   }
 
   /**
@@ -477,11 +472,11 @@ public class AppUtil {
    *
    * @return boolean value
    */
-  @RequiresPermission(ACCESS_NETWORK_STATE)
-  public static boolean isNetworkConnected() {
-    NetworkInfo info = getActiveNetworkInfo();
-    return info != null && info.isConnected();
-  }
+//  @RequiresPermission(ACCESS_NETWORK_STATE)
+//  public static boolean isNetworkConnected() {
+//    NetworkInfo info = getActiveNetworkInfo();
+//    return info != null && info.isConnected();
+//  }
 
   /**
    * Get activity network info instace
@@ -489,13 +484,13 @@ public class AppUtil {
    * @return instance of {@link NetworkInfo}
    */
 
-  @RequiresPermission(ACCESS_NETWORK_STATE)
-  private static NetworkInfo getActiveNetworkInfo() {
-    ConnectivityManager cm =
-        (ConnectivityManager) getApp().getSystemService(Context.CONNECTIVITY_SERVICE);
-    if (cm == null) return null;
-    return cm.getActiveNetworkInfo();
-  }
+//  @RequiresPermission(ACCESS_NETWORK_STATE)
+//  private static NetworkInfo getActiveNetworkInfo() {
+//    ConnectivityManager cm =
+//        (ConnectivityManager) getApp().getSystemService(Context.CONNECTIVITY_SERVICE);
+//    if (cm == null) return null;
+//    return cm.getActiveNetworkInfo();
+//  }
 
   /**
    * Determine if the navigation bar will be on the bottom of the screen, based on logic in
@@ -521,20 +516,20 @@ public class AppUtil {
   /**
    * Set the alpha component of {@code color} to be {@code alpha}.
    */
-  static @CheckResult
-  @ColorInt
-  int modifyAlpha(@ColorInt int color,
-                  @IntRange(from = 0, to = 255) int alpha) {
-    return (color & 0x00ffffff) | (alpha << 24);
-  }
+//  static @CheckResult
+//  @ColorInt
+//  int modifyAlpha(@ColorInt int color,
+//                  @IntRange(from = 0, to = 255) int alpha) {
+//    return (color & 0x00ffffff) | (alpha << 24);
+//  }
 
   /**
    * Set the alpha component of {@code color} to be {@code alpha}.
    */
-  public static @CheckResult
-  @ColorInt
-  int modifyAlpha(@ColorInt int color,
-                  @FloatRange(from = 0f, to = 1f) float alpha) {
-    return modifyAlpha(color, (int) (255f * alpha));
-  }
+//  public static @CheckResult
+//  @ColorInt
+//  int modifyAlpha(@ColorInt int color,
+//                  @FloatRange(from = 0f, to = 1f) float alpha) {
+//    return modifyAlpha(color, (int) (255f * alpha));
+//  }
 }

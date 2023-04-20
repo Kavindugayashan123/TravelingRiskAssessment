@@ -1,5 +1,7 @@
 package lk.kavi.travelapp.model;
 
+import android.graphics.Bitmap;
+
 public class User {
 
     String uid;
@@ -10,7 +12,13 @@ public class User {
     String age;
     String email;
     String mobileno;
+    String range;
+    double rangeInt;
+    String img;
+    Bitmap bitmap;
 
+    double lon;
+    double lat;
 
     public String getUid() {
         return uid;
@@ -74,5 +82,53 @@ public class User {
 
     public void setMobileno(String mobileno) {
         this.mobileno = mobileno;
+    }
+
+    public String getRange() {
+        return range;
+    }
+
+    public void setRange(String range) {
+        this.range = range;
+    }
+
+    public Bitmap getBitmap() {
+        return bitmap;
+    }
+
+    public void setBitmap(Bitmap bitmap) {
+        this.bitmap = bitmap;
+    }
+
+    public double getLon() {
+        return lon;
+    }
+
+    public void setLon(double lon) {
+        this.lon = lon;
+    }
+
+    public double getLat() {
+        return lat;
+    }
+
+    public void setLat(double lat) {
+        this.lat = lat;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
+
+    public double getRangeInt() {
+        return rangeInt;
+    }
+
+    public void setRangeInt(double rangeInt) {
+        this.rangeInt = rangeInt;
     }
 }

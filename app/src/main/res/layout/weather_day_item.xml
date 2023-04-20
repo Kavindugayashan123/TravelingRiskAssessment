@@ -57,13 +57,6 @@
                     android:gravity="center_horizontal"
                     android:orientation="vertical">
 
-                    <androidx.appcompat.widget.AppCompatImageView
-                        style="@style/IconInColoredCard"
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:gravity="center"
-                        app:srcCompat="@drawable/ic_action_navigation_close" />
-
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/min_temp_text_view"
                         style="@style/SubTextViewInColoredCard"
@@ -81,12 +74,6 @@
                     android:gravity="center_horizontal"
                     android:orientation="vertical">
 
-                    <androidx.appcompat.widget.AppCompatImageView
-                        style="@style/IconInColoredCard"
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:gravity="center"
-                        app:srcCompat="@drawable/ic_action_navigation_close" />
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/max_temp_text_view"

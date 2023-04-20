@@ -18,7 +18,7 @@
             android:layout_gravity="center">
 
             <EditText
-                android:id="@+id/b_group"
+                android:id="@+id/frdMobileNo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
@@ -30,13 +30,13 @@
 
 
         <Button
-            android:id="@+id/male"
+            android:id="@+id/addBtn"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_margin="20dp"
             android:background="@drawable/btn_shape"
-            android:text="ADD FRIEND"
+            android:text="SEARCH"
             android:textColor="#FFFFFF"
             android:textSize="18sp"
             android:textStyle="bold" />

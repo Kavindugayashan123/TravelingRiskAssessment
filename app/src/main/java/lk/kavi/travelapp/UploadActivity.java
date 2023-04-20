@@ -12,6 +12,7 @@ import lk.kavi.travelapp.utils.ApiClient;
 import android.Manifest;
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -28,6 +29,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -52,6 +54,8 @@ public class UploadActivity extends AppCompatActivity  implements LocationListen
     double latitude;
     String userCountry, userAddress;
 
+    LinearLayout data1,data2;
+
     ImageView uploadImage;
 
     Button uploadBtn;
@@ -74,6 +78,8 @@ public class UploadActivity extends AppCompatActivity  implements LocationListen
 
         uploadImage = findViewById(R.id.uploadImage);
         uploadBtn = findViewById(R.id.uploadBtn);
+        data1 = findViewById(R.id.data1);
+        data2 = findViewById(R.id.data2);
 
 
         uploadBtn.setOnClickListener(view -> {
@@ -84,6 +90,7 @@ public class UploadActivity extends AppCompatActivity  implements LocationListen
                         Toast.LENGTH_LONG).show();
                 return;
             }
+            showLoadingDialog();
             DatabaseReference dbRef = ApiClient.getDBRef();
 
             DatabaseReference riskdata = dbRef.child("riskdata");
@@ -108,9 +115,13 @@ public class UploadActivity extends AppCompatActivity  implements LocationListen
                     }
 
                     placeDesc.setText(data.getDescription());
-                    deathCount.setText(data.getDeath()+"");
+                    deathCount.setText("Death Count : "+data.getDeath()+"");
                     riskPtg.setText(data.getRisk_pg());
                     placeName.setText(data.getName());
+
+                    data1.setVisibility(View.VISIBLE);
+                    data2.setVisibility(View.VISIBLE);
+                    dismissLoadingDialog();
 
 
                 }
@@ -119,6 +130,7 @@ public class UploadActivity extends AppCompatActivity  implements LocationListen
                 public void onCancelled(DatabaseError error){
                     // Failed to read value
                     Log.w(TAG,"Failed to read value.",error.toException());
+                    dismissLoadingDialog();
                 }
             });
 
@@ -128,7 +140,13 @@ public class UploadActivity extends AppCompatActivity  implements LocationListen
         uploadImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openCamera();
+                if (ContextCompat.checkSelfPermission(UploadActivity.this, Manifest.permission.CAMERA)
+                        == PackageManager.PERMISSION_DENIED){
+                    Toast.makeText(UploadActivity.this, "camera permission denied", Toast.LENGTH_LONG).show();
+                    return;
+                }else {
+                    openCamera();
+                }
             }
         });
 
@@ -258,5 +276,27 @@ public class UploadActivity extends AppCompatActivity  implements LocationListen
         System.out.println(longitude);
 
 
+    }
+
+
+    private ProgressDialog progress;
+
+
+
+    public void showLoadingDialog() {
+
+        if (progress == null) {
+            progress = new ProgressDialog(this);
+            progress.setTitle("Loading");
+            progress.setMessage("Please Wait...");
+        }
+        progress.show();
+    }
+
+    public void dismissLoadingDialog() {
+
+        if (progress != null && progress.isShowing()) {
+            progress.dismiss();
+        }
     }
 }

@@ -44,6 +44,8 @@ public class HotelActivity extends AppCompatActivity {
 
         Hotel data = new Gson().fromJson(datas, Hotel.class);
 
+        getSupportActionBar().setTitle(data.getName());
+
         hotelName.setText(data.getName());
         mobileNo.setText(data.getMobile_no());
         wifiTxt.setText(data.getWifi());

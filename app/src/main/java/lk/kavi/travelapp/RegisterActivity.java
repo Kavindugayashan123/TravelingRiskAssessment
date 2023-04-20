@@ -15,6 +15,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -102,6 +103,7 @@ public class RegisterActivity extends AppCompatActivity {
                         DatabaseReference db = ApiClient.getDBRef();
                         Map<String, Object> user = new HashMap<>();
                         user.put("uid", uid);
+                        user.put("img", "https://static.vecteezy.com/system/resources/previews/008/442/086/original/illustration-of-human-icon-user-symbol-icon-modern-design-on-blank-background-free-vector.jpg");
                         user.put("name", nameTxt);
                         user.put("age", ageTxt);
                         user.put("address", adressTxt);
@@ -109,6 +111,7 @@ public class RegisterActivity extends AppCompatActivity {
                         user.put("b_group", bGroupTxt);
                         user.put("email", emailTxt);
                         user.put("mobileno", mobileNoTxt);
+                        user.put("friends", new ArrayList<>());
                         //Add other user data
                         DatabaseReference usersRef = db.child("users");
                         usersRef.child(uid).setValue(user).addOnCompleteListener(task1 -> {

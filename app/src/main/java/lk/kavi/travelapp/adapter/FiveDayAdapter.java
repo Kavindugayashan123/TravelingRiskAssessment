@@ -1,5 +1,6 @@
 package lk.kavi.travelapp.adapter;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.view.LayoutInflater;
@@ -13,18 +14,21 @@ import java.util.List;
 import java.util.Locale;
 import java.util.TimeZone;
 
+import androidx.appcompat.widget.AppCompatImageView;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 import lk.kavi.travelapp.R;
 import lk.kavi.travelapp.fragment.FiveDayWeather;
+import lk.kavi.travelapp.utils.AppUtil;
 import lk.kavi.travelapp.utils.Constants;
 
 public class FiveDayAdapter extends RecyclerView.Adapter<FiveDayAdapter.ViewHolder> {
 
-
+    Context context;
     private List<FiveDayWeather> listdata;
 
-    public FiveDayAdapter(List<FiveDayWeather> listdata) {
+    public FiveDayAdapter(Context applicationContext,List<FiveDayWeather> listdata) {
+        this.context = applicationContext;
         this.listdata = listdata;
     }
 
@@ -52,7 +56,7 @@ public class FiveDayAdapter extends RecyclerView.Adapter<FiveDayAdapter.ViewHold
         holder.tempTextView.setText(String.format(Locale.getDefault(), "%.0f°", item.getTemp()));
 //      holder.minTempTextView.setText(String.format(Locale.getDefault(), "%.0f°", item.getMinTemp()));
 //      holder.maxTempTextView.setText(String.format(Locale.getDefault(), "%.0f°", item.getMaxTemp()));
-//      AppUtil.setWeatherIcon(context, holder.weatherImageView, item.weatherId);
+      AppUtil.setWeatherIcon(this.context, holder.weatherImageView, item.getWeatherId());
         GradientDrawable shape = new GradientDrawable(GradientDrawable.Orientation.RIGHT_LEFT, colors);
         shape.setShape(GradientDrawable.OVAL);
         holder.shadowView.setBackground(shape);
@@ -70,7 +74,7 @@ public class FiveDayAdapter extends RecyclerView.Adapter<FiveDayAdapter.ViewHold
         public CardView cardView;
         public TextView dayNameTextView;
         public TextView tempTextView;
-        public ImageView weatherImageView;
+        public AppCompatImageView weatherImageView;
         public View shadowView;
 
         public ViewHolder(View itemView) {
@@ -78,7 +82,7 @@ public class FiveDayAdapter extends RecyclerView.Adapter<FiveDayAdapter.ViewHold
             this.cardView = (CardView) itemView.findViewById(R.id.card_view);
             this.dayNameTextView = (TextView) itemView.findViewById(R.id.day_name_text_view);
             this.tempTextView = (TextView) itemView.findViewById(R.id.temp_text_view);
-            this.weatherImageView = (ImageView) itemView.findViewById(R.id.weather_image_view);
+            this.weatherImageView = (AppCompatImageView) itemView.findViewById(R.id.weather_image_view);
             this.shadowView = (View) itemView.findViewById(R.id.shadow_view);
         }
 
